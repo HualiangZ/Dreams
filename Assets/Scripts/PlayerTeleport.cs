@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerTeleport : MonoBehaviour
 {
@@ -30,6 +31,19 @@ public class PlayerTeleport : MonoBehaviour
         {
             curTeleport = collision.gameObject;
         }
+
+
+        if (collision.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -39,5 +53,7 @@ public class PlayerTeleport : MonoBehaviour
         {
             curTeleport = null;
         }
+
     }
+
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Laser : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class Laser : MonoBehaviour
         Debug.Log(hit.collider.gameObject.name);
         if(hit.collider.tag == "Player")
         {
-            Destroy(hit.collider.gameObject);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
