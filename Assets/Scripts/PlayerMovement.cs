@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform movePointer;
     private Vector2 point;
     public LayerMask colliders;
+    public bool move = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,12 +30,24 @@ public class PlayerMovement : MonoBehaviour
             if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
             {
                 if (!Physics2D.OverlapCircle(movePointer.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0), 0.2f, colliders))
+                {
                     movePointer.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
+                    move = true;
+                }
+                    
             }
             else if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
             {
                 if (!Physics2D.OverlapCircle(movePointer.position + new Vector3(0, Input.GetAxisRaw("Vertical"), 0), 0.2f, colliders))
+                {
                     movePointer.position += new Vector3(0, Input.GetAxisRaw("Vertical"), 0);
+                    move = true;
+                }
+                    
+            }
+            else
+            {
+                move = false;
             }
         }
     }

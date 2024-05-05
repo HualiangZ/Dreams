@@ -7,7 +7,7 @@ public class MirrorScript : MonoBehaviour
     public float speed = 5f;
     public Transform movePointer;
     public Transform movePointer2;
-
+    public PlayerMovement pMove;
     public LayerMask colliders;
     // Start is called before the first frame update
     void Start()
@@ -25,7 +25,7 @@ public class MirrorScript : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePointer.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0), 0.2f, colliders))
                 {
-                    if(!Physics2D.OverlapCircle(movePointer2.position + new Vector3(Input.GetAxisRaw("Horizontal"),0, 0), 0.2f, colliders))
+                    if(pMove.move)
                     {
                         movePointer.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0, 0);
                     }
@@ -37,7 +37,7 @@ public class MirrorScript : MonoBehaviour
             {
                 if (!Physics2D.OverlapCircle(movePointer.position + new Vector3(0, -Input.GetAxisRaw("Vertical"), 0), 0.2f, colliders))
                 {
-                    if(!Physics2D.OverlapCircle(movePointer2.position + new Vector3(0, Input.GetAxisRaw("Vertical"), 0), 0.2f, colliders))
+                    if(pMove.move)
                     {
                         movePointer.position += new Vector3(0, -Input.GetAxisRaw("Vertical"), 0);
                     }
